@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#111111" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="icon" href="/meal-photo-log/icons/icon-192.png" />
+    <title>食事記録</title>
+  </head>
+  <body>
+    <section id="camera-screen">
+      <video id="video" autoplay playsinline muted></video>
+      <img id="shot" alt="" hidden />
+      <div id="flash"></div>
+
+      <div class="topbar">
+        <a href="#review" class="btn-text">記録を見る</a>
+      </div>
+
+      <div id="camera-error" hidden>
+        <p>カメラを起動できませんでした。</p>
+        <p class="sub">ブラウザの設定でこのサイトのカメラを許可してから開き直してください。</p>
+        <label class="btn-text">
+          ファイルから選ぶ
+          <input id="file-input" type="file" accept="image/*" capture="environment" hidden />
+        </label>
+      </div>
+
+      <div id="live-controls">
+        <button id="shutter" type="button" aria-label="撮影"></button>
+      </div>
+
+      <div id="choose-controls" hidden>
+        <div class="meal-grid">
+          <button type="button" data-type="breakfast">朝食</button>
+          <button type="button" data-type="lunch">昼食</button>
+          <button type="button" data-type="dinner">夕食</button>
+          <button type="button" data-type="snack">間食</button>
+        </div>
+        <button id="retake" type="button" class="btn-text">撮り直す</button>
+      </div>
+    </section>
+
+    <section id="review-screen" hidden>
+      <header>
+        <a href="#" class="btn-text">撮る</a>
+        <h1>記録</h1>
+      </header>
+      <div id="days"></div>
+    </section>
+
+    <div id="viewer" hidden>
+      <div class="viewer-bar">
+        <span id="viewer-title"></span>
+        <button id="viewer-close" type="button" class="btn-text">閉じる</button>
+      </div>
+      <div id="viewer-body"></div>
+    </div>
+
+    <div id="toast" hidden></div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
