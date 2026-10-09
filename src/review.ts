@@ -1,12 +1,13 @@
 import { db, type Meal } from './db'
 import { MEAL_LABEL, MEAL_SHORT, MEAL_TYPES } from './mealType'
-import { formatDateKey, formatTime } from './ui'
+import { formatBytes, formatDateKey, formatTime } from './ui'
 
 const days = document.getElementById('days')!
 const viewer = document.getElementById('viewer')!
 const viewerTitle = document.getElementById('viewer-title')!
 const viewerBody = document.getElementById('viewer-body')!
 const viewerClose = document.getElementById('viewer-close')!
+const storageEl = document.getElementById('storage')!
 
 const objectUrls: string[] = []
 
@@ -30,6 +31,7 @@ export async function renderReview(): Promise<void> {
   revokeAll()
   const meals = await db.meals.orderBy('takenAt').reverse().toArray()
   days.replaceChildren()
+  void renderStorage(meals.length)
 
   if (meals.length === 0) {
     const p = document.createElement('p')
@@ -82,6 +84,17 @@ export async function renderReview(): Promise<void> {
     row.append(cells)
     days.append(row)
   }
+}
+
+async function renderStorage(count: number): Promise<void> {
+  const estimate = navigator.storage?.estimate
+    ? await navigator.storage.estimate().catch(() => undefined)
+    : undefined
+  if (!estimate || estimate.usage == null || estimate.quota == null) {
+    storageEl.textContent = `${count}枚`
+    return
+  }
+  storageEl.textContent = `${count}枚 / 使用 ${formatBytes(estimate.usage)} / 空き ${formatBytes(estimate.quota - estimate.usage)}`
 }
 
 function openViewer(dateKey: string, items: Meal[]): void {

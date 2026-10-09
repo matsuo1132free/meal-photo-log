@@ -20,3 +20,9 @@ export function formatTime(epochMs: number): string {
   const d = new Date(epochMs)
   return `${d.getHours()}:${String(d.getMinutes()).padStart(2, '0')}`
 }
+
+export function formatBytes(bytes: number): string {
+  const gb = bytes / 1024 ** 3
+  if (gb >= 1) return `${gb.toFixed(1)} GB`
+  return `${Math.max(0, bytes / 1024 ** 2).toFixed(1)} MB`
+}
