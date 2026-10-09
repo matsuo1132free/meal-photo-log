@@ -261,6 +261,92 @@ button {
   font-size: 12px;
 }
 
+#review-screen header .header-right {
+  margin-left: auto;
+}
+
+/* 設定画面 */
+#settings-screen {
+  min-height: 100vh;
+  padding: 0 16px calc(env(safe-area-inset-bottom) + 32px);
+}
+
+#settings-screen header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: calc(env(safe-area-inset-top) + 12px) 0 12px;
+  background: var(--bg);
+}
+
+#settings-screen h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.settings-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.field span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.field input {
+  width: 100%;
+  padding: 12px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--fg);
+  background: var(--cell);
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+.btn-primary {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  background: #fff;
+  border: 0;
+  border-radius: 12px;
+}
+
+.btn-primary:disabled,
+.row button:disabled {
+  opacity: 0.4;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.status {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+  min-height: 1.4em;
+}
+
+.help {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
 /* 拡大表示 */
 #viewer {
   position: fixed;
