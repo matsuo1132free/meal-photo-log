@@ -1,7 +1,6 @@
 import { db, toDateKey } from './db'
 import { processPhoto } from './image'
 import { MEAL_LABEL, type MealType } from './mealType'
-import { syncPending } from './sync'
 import { toast } from './ui'
 
 const video = document.getElementById('video') as HTMLVideoElement
@@ -136,7 +135,6 @@ async function onChoose(mealType: MealType): Promise<void> {
     void navigator.storage?.persist?.()
     toast(`${MEAL_LABEL[mealType]}を保存しました`)
     exitChoose()
-    void syncPending()
   } catch (e) {
     console.error(e)
     toast('保存に失敗しました')

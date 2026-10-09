@@ -46,30 +46,8 @@
       <header>
         <a href="#" class="btn-text">撮る</a>
         <h1>記録</h1>
-        <a href="#settings" class="btn-text header-right">バックアップ</a>
       </header>
       <div id="days"></div>
-    </section>
-
-    <section id="settings-screen" hidden>
-      <header>
-        <a href="#review" class="btn-text">戻る</a>
-        <h1>バックアップ</h1>
-      </header>
-      <div class="settings-body">
-        <label class="field">
-          <span>Googleドライブ連携URL（GASウェブアプリ）</span>
-          <input id="gas-url" type="url" inputmode="url" autocomplete="off" placeholder="https://script.google.com/macros/s/.../exec" />
-        </label>
-        <button id="gas-save" type="button" class="btn-primary">保存して接続を確認</button>
-        <p id="sync-status" class="status"></p>
-        <div class="row">
-          <button id="sync-now" type="button" class="btn-text">今すぐ送信</button>
-          <button id="restore" type="button" class="btn-text">ドライブから復元</button>
-        </div>
-        <p id="restore-progress" class="status"></p>
-        <p class="help">保存した写真は自動でドライブの「食事写真記録」フォルダへ送られます。機種変更時は新しい端末でURLを入れて「ドライブから復元」を押してください。</p>
-      </div>
     </section>
 
     <div id="viewer" hidden>

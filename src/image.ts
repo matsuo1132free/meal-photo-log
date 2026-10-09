@@ -12,16 +12,6 @@ export async function processPhoto(bitmap: ImageBitmap): Promise<{ photo: Blob; 
   }
 }
 
-/** 復元時にサムネイルだけ作り直す */
-export async function makeThumb(photo: Blob): Promise<Blob> {
-  const bitmap = await createImageBitmap(photo)
-  try {
-    return await cropSquare(bitmap, THUMB_EDGE, 0.75)
-  } finally {
-    bitmap.close()
-  }
-}
-
 function shrink(bitmap: ImageBitmap, maxEdge: number, quality: number): Promise<Blob> {
   const scale = Math.min(1, maxEdge / Math.max(bitmap.width, bitmap.height))
   const w = Math.round(bitmap.width * scale)

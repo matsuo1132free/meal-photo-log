@@ -1,6 +1,5 @@
 import { db, type Meal } from './db'
 import { MEAL_LABEL, MEAL_SHORT, MEAL_TYPES } from './mealType'
-import { syncPending } from './sync'
 import { formatDateKey, formatTime } from './ui'
 
 const days = document.getElementById('days')!
@@ -104,12 +103,8 @@ function openViewer(dateKey: string, items: Meal[]): void {
     del.textContent = '削除'
     del.addEventListener('click', async () => {
       if (!confirm('この写真を削除しますか？')) return
-      await db.transaction('rw', db.meals, db.pendingDeletes, async () => {
-        await db.meals.delete(m.id)
-        if (m.driveFileId) await db.pendingDeletes.put({ fileId: m.driveFileId })
-      })
+      await db.meals.delete(m.id)
       await renderReview()
-      void syncPending()
     })
     meta.append(time, del)
     card.append(img, meta)

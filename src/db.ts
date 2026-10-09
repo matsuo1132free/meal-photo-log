@@ -3,7 +3,7 @@ import type { MealType } from './mealType'
 
 export interface Meal {
   id: number
-  /** 端末をまたいで同じ写真を識別するID。バックアップのファイル名にも使う */
+  /** 端末をまたいで同じ写真を識別するID */
   uid: string
   /** 撮影時刻 (epoch ms) */
   takenAt: number
@@ -12,11 +12,9 @@ export interface Meal {
   mealType: MealType
   photo: Blob
   thumb: Blob
-  /** Googleドライブ上のファイルID。未送信なら undefined */
   driveFileId?: string
 }
 
-/** 端末で削除済みだがドライブ側の削除がまだのファイル */
 export interface PendingDelete {
   fileId: string
 }
@@ -30,6 +28,7 @@ db.version(1).stores({
   meals: '++id, takenAt, dateKey',
 })
 
+// v2 は一度配布したバックアップ機能の名残。配布済み端末がこの版になっているため残す
 db.version(2)
   .stores({
     meals: '++id, takenAt, dateKey, &uid',
